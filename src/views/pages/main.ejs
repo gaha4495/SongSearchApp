@@ -1,5 +1,6 @@
 <%- include('../partials/header') %>
 	<%- include('../partials/navbar') %>
+    <hr>
 	<!--CARD-->
     <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
         <!--Content-->
@@ -16,5 +17,57 @@
                     </div>
                     <button id="audioSubmit" type="submit" class="btn btn-primary">Submit</button>
             </div>
+    </div>
+    <hr>
+    <div class="d-flex flex-column min-vh-50 justify-content-center align-items-center">
+        <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title">Search Submission Return</h5>
+              <p class="card-text">This is where, after presssing submit, the page will return info grabbed from the API.</p>
+              <ul>
+                  <li>
+                      <p>List Item 1</p>
+                  </li>
+                  <li>
+                    <p>List Item 2</p>
+                </li>
+                <li>
+                    <p>List Item 3</p>
+                </li>
+                <li>
+                    <p>List Item 4</p>
+                </li>
+                <li>
+                    <p>List Item 5</p>
+                </li>
+              </ul>
+              <!--Modal Pop-Up Button-->
+              <button id="searchSubmit" type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchModal">
+                  Add Search Result
+              </button>
+            </div>
+          </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Adding Search Result</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body text-center">
+                <p>Would you like to add: </p>
+                <p> . . . </p>
+                <p>To your search history? </p>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="addSearchBtn">Yes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+        </div>
     </div>
 <%- include('../partials/footer') %>
