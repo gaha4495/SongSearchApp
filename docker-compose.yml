@@ -11,29 +11,39 @@
 # ------------------------------------------------------------------------------
 
 services:
-  heroku-cli:
-    build: ./heroku
-    env_file: ./heroku/.env
-
+  #heroku-cli:
+  #  build: ./heroku
+  # env_file: ./heroku/.env
   db:
-    build: ./db
+    image: postgres
+    #build: ./db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Neverquit4405!
+      POSTGRES_DB: audio_db
     env_file: .env
+    expose:
+      - "5432"
     volumes:
       - ./db/init_data:/docker-entrypoint-initdb.d
-      - lab10-db-volume:/var/lib/postgresql/data  
-
+      - audioProject-db:/var/lib/postgresql/data  
   web:
-    build: 
-      context: ./
-      dockerfile: Dockerfile
-      target: devapp
+    #build: 
+    #  context: ./
+    #  dockerfile: Dockerfile
+    #  target: devapp
+    image: node:12
+    user: "node"
+    working_dir: /home/node/app
     depends_on:
       - db                                      
     env_file: .env
     ports:
         - "5432:5432" 
     volumes:
-      - ./src:/app/src
+    #  - ./src:/app/src
+      - ./:/home/node/app
+    command: "npm start"
 
 volumes:
-  lab10-db-volume: {}
+  audioProject-db: {}
