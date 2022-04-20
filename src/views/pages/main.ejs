@@ -1,0 +1,20 @@
+<%- include('../partials/header') %>
+	<%- include('../partials/navbar') %>
+	<!--CARD-->
+    <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+        <!--Content-->
+        <div class="card text-center" style="width: 20rem;">
+            <img class="card-img-top" src="../resources/img/microphone.png" alt="A microphone png">
+            <div class="card-body border-primary">
+                <h2 class="card-title text-capitalize">The Audio DB API</h1>
+                    <h5 class="card-subtitle mb-2 text-muted">Enter an audio to for the API to fetch and
+                        return!</h5>
+                    <div class="form-group" id="audioForm">
+                        <input class="form-control" id="audioSelection" aria-describedby="emailHelp"
+                            placeholder="My Audio Selection">
+                        <small id="selectionHelp" class="form-text text-muted">Try: "Eminem".</small>
+                    </div>
+                    <button id="audioSubmit" type="submit" class="btn btn-primary">Submit</button>
+            </div>
+    </div>
+<%- include('../partials/footer') %>
