@@ -15,7 +15,7 @@
                             placeholder="My Audio Selection">
                         <small id="selectionHelp" class="form-text text-muted">Try: "Eminem".</small>
                     </div>
-                    <button id="audioSubmit" type="submit" class="btn btn-primary">Submit</button>
+                    <button id="audioSubmit" type="submit" class="btn btn-primary" onclick="submitAudio()">Submit</button>
             </div>
     </div>
     <hr>
@@ -26,19 +26,24 @@
               <p class="card-text">This is where, after presssing submit, the page will return info grabbed from the API.</p>
               <ul>
                   <li>
-                      <p>List Item 1</p>
+                      <h4>Name</h4>
+                      <p id="li1">_______</p>
                   </li>
                   <li>
-                    <p>List Item 2</p>
+                    <h4>Genre</h4>
+                    <p id="li2">_______</p>
                 </li>
                 <li>
-                    <p>List Item 3</p>
+                    <h4>Place of Birth</h4>
+                    <p id="li3">_______</p>
+                </li>
+                <li >
+                    <h4>Short Biography</h4>
+                    <p id="li4">_______</p>
                 </li>
                 <li>
-                    <p>List Item 4</p>
-                </li>
-                <li>
-                    <p>List Item 5</p>
+                    <h4>Music Label</h4>
+                    <p id="li5">_______</p>
                 </li>
               </ul>
               <!--Modal Pop-Up Button-->
@@ -60,11 +65,11 @@
             </div>
             <div class="modal-body text-center">
                 <p>Would you like to add: </p>
-                <p> . . . </p>
+                <p id="modalSubmission"> . . . </p>
                 <p>To your search history? </p>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="addSearchBtn">Yes</button>
+            <button type="button" class="btn btn-primary" id="addSearchBtn" onclick="saveAudio()">Yes</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
         </div>

@@ -1,5 +1,13 @@
 .text-center {
-    display:flex;
-    justify-content:center;
+    display: flex;
+    justify-content: center;
     align-items: center;
+}
+
+.ul{
+    list-style-type: none;
+}
+
+.table{
+    background-color: white;
 }
