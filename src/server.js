@@ -98,71 +98,66 @@ app.get('/searches', function (req, res) {
     });
 });
 
-  //SUBMIT AUDIO
-  app.post('/searches', function (req, res) {
-    //Save val's from page
-    const submission = req.body.submission;
-    const nameAlt = req.body.nameAlt;
-    const genre = req.body.genre;
-    const country = req.body.country;
-    var bio = req.body.bio;
-    const label = req.body.label;
+//SUBMIT AUDIO
+app.post('/searches', function (req, res) {
+  //Save val's from page
+  const submission = req.body.submission;
+  const nameAlt = req.body.nameAlt;
+  const genre = req.body.genre;
+  const country = req.body.country;
+  var bio = req.body.bio;
+  const label = req.body.label;
 
-    bio = bio.replace(/'/g, "");
-    bio = bio.replace(/"/g, "");
-    bio = bio.replace(/(\r\n|\n|\r)/gm, "");
+  bio = bio.replace(/'/g, "");
+  bio = bio.replace(/"/g, "");
+  bio = bio.replace(/(\r\n|\n|\r)/gm, "");
 
-    //Query to insert val's
-    var query = `Insert into savedAudio (submission,nameAlt,genre,country,bio,label) values('${submission}','${nameAlt}','${genre}','${country}','${bio}','${label}')`;
+  //Query to insert val's
+  var query = `Insert into savedAudio (submission,nameAlt,genre,country,bio,label) values('${submission}','${nameAlt}','${genre}','${country}','${bio}','${label}')`;
 
-    console.log(query.slice(390, 400));
+  console.log(query.slice(390, 400));
 
-    //Insert command into savedAudio_db
-    db.query(query)
-      .then(function (rows) {
-        res.status(200);
-      })
-      .catch(function (err) {
-        console.log('error', err);
-        res.status(500);
-      });
-  });
+  //Insert command into savedAudio_db
+  db.query(query)
+    .then(function (rows) {
+      res.status(200);
+    })
+    .catch(function (err) {
+      console.log('error', err);
+      res.status(500);
+    });
+});
 
-  /* +===== TESTING =====+ */
-  //docker-compose run web npm test
-  //Might need to move test folder into src (note .yml volumes)
-  //docker-compose build
-  //module.exports = app.listen(3000);
+/* +===== TESTING =====+ */
+//docker-compose run web npm test
+//Might need to move test folder into src (note .yml volumes)
+//docker-compose build on json edit
 
-  const testArtists = [
-    {
-    id: 1,
-    submission: "Eminem" ,       /* Stage Name of the Submitted Artist / Group                     */
-    nameAlt: "Marshall Mathers III" ,   /*     Real Name     */
-    genre: "Hip-Hop",  /* Artist Genre */
-    country: "USA",        /* Place of Birt    */
-    bio: "A LONG ASS BIOGRAPHY",         /* Small Artist BIO*/
-    label: "AfterMath Records",
-    },
-    {
-    id: 2,
-    submission: "Madonna" ,       /* Stage Name of the Submitted Artist / Group                     */
-    nameAlt: "Madonna Louise Vernica Ciccone" ,   /*     Real Name     */
-    genre: "Pop",  /* Artist Genre */
-    country: "Michigan, USA",        /* Place of Birt    */
-    bio: "A LONG ASS BIOGRAPHY",         /* Small Artist BIO*/
-    label: "Interscope Records",
-    }
-  ]
-
-// Simple get api provided to check if the node.js starts up successfully. Opening up http://localhost:3000 should display the below returned json.
+// Simple get api provided to check if the node.js starts up successfully.
 app.get("/", (req, res) => {
   res.json({ status: "success", message: "Welcome!" });
 });
 
-app.get("/searches", (request, response) => {
-  response.send(ops);
-});
+const testArtists = [
+  {
+    id: 1,
+    submission: "Eminem",       /* Stage Name of the Submitted Artist / Group                     */
+    nameAlt: "Marshall Mathers III",   /*     Real Name     */
+    genre: "Hip-Hop",  /* Artist Genre */
+    country: "USA",        /* Place of Birt    */
+    bio: "A LONG ASS BIOGRAPHY",         /* Small Artist BIO*/
+    label: "AfterMath Records",
+  },
+  {
+    id: 2,
+    submission: "Madonna",       /* Stage Name of the Submitted Artist / Group                     */
+    nameAlt: "Madonna Louise Vernica Ciccone",   /*     Real Name     */
+    genre: "Pop",  /* Artist Genre */
+    country: "Michigan, USA",        /* Place of Birt    */
+    bio: "A LONG ASS BIOGRAPHY",         /* Small Artist BIO*/
+    label: "Interscope Records",
+  }
+]
 
 // GET (BY ID)
 app.get("/searches/:id", (request, response) => {
@@ -172,10 +167,14 @@ app.get("/searches/:id", (request, response) => {
     return response
       .status(404)
       .send("The artist with the provided ID does not exist.");
-  response.send(op);
+  response.send(artist);
 });
 
-  //app.listen(3000);
-  const server = app.listen(process.env.PORT || 3000, () => {
-    console.log(`Express running → PORT ${server.address().port}`);
-  });
+/* -- MORE TESTING ANTICS -- */
+
+//app.listen(3000);
+const server = app.listen(process.env.PORT || 3000, () => {
+  console.log(`Express running → PORT ${server.address().port}`);
+});
+
+module.exports = server;
